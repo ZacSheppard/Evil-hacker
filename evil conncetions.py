@@ -1,6 +1,6 @@
 import random #lets me use random
 
-grid = [                  #creates 4x4 grid
+grid = [                  #creates 4x4 grid.
     ["word","word","word","word"],
     ["word","word","word","word"],
     ["word","word","word","word"],
