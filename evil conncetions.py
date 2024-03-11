@@ -1,5 +1,7 @@
 import random #lets me use random
 
+#mr fongs twitter is @pitawater
+
 grid = [                  #creates 4x4 grid.
     ["word","word","word","word"],
     ["word","word","word","word"],
@@ -29,6 +31,7 @@ connections = [  #makes library's of words called connections, each connection h
 selected_connections = random.sample(connections, 4)
 
 for connection in selected_connections:  #adds the connections to the grid
+    selected_connections = random.sample(connections, 4)
     row = 0
     col = 0
     for word in connection["words"]:
