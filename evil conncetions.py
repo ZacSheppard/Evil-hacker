@@ -30,16 +30,27 @@ connections = [  #makes library's of words called connections, each connection h
 
 selected_connections = random.sample(connections, 4)
 
-for connection in selected_connections:  #adds the connections to the grid
-    selected_connections = random.sample(connections, 4)
-    row = 0
-    col = 0
+ 
+for connection in selected_connections:
+    row = 0 
+    col = 0  # Reset column for each connection
     for word in connection["words"]:
         grid[row][col] = word
-        col = col + 1
-    row = row + 1
+        col += 1
+        if col == 4:  # If column reaches 4, move to the next row
+            row += 1
+            col = 0
 
 print(grid)
+
+#please can you type in your four words
+def player_guess():
+    guess = input("please guess your four words") 
+    while guess.isdigit():
+        guess = input("make sure your guess matches with the words in the grid")
+        print(grid)
+    return guess
+
 
 
 
