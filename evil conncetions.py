@@ -38,9 +38,9 @@ def fill_grid():
 
     # Distribute the shuffled words across the grid   
     for l in range(4):  #refers to the length of the list because its four things long
-        for w in range(4): #same thing but this time its
+        for w in range(4): #same thing but this time its width
             if shuffled_words:  #checks if there are still words in the shuffled words list 
-                grid[l][w] = shuffled_words.pop(0)  #adds word into spots inside of the grid using pop 
+                grid[l][w] = shuffled_words.pop(0)  #adds word into spots inside of the grid ensuring each word is only used once
 
     print_grid(grid)
     return grid
