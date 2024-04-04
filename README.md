@@ -5,6 +5,11 @@ mine is evil 😈
 
 
 
+fyi the only relavent file is the "evil connections" file so you dont need to open any others
+
+
+
+
 HOW TO PLAY!
 the first thing you will see is a 4x4 grid filled with words
 you then enter 4 words you belive belong to the same evil connection
