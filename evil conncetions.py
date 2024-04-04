@@ -25,6 +25,18 @@ connections = [
     {"linking_word": "Famous landmarks", "words": ["Eiffel Tower", "Statue of Liberty", "Taj Mahal", "Great Wall of China"]},
     {"linking_word": "Types of desserts", "words": ["cake", "ice cream", "pie", "cookies"]},
     {"linking_word": "Planets in the solar system", "words": ["Mercury", "Venus", "Earth", "Mars"]} ,
+    {"linking_word": "methods of psychological manipulation", "words": ["gaslighting", "brainwashing", "narcissistic abuse", "emotional blackmail"]},
+    {"linking_word": "tactics of corporate sabotage", "words": ["sabotaging projects", "spreading false rumors", "poisoning relationships", "stealing intellectual property"]},
+    {"linking_word": "tools of dark magic", "words": ["cursed amulets", "blood sigils", "necromantic tomes", "soul-binding artifacts"]},
+    {"linking_word": "strategies of world domination", "words": ["economic destabilization", "political subterfuge", "biological warfare", "cybernetic enslavement"]},
+    {"linking_word": "creatures of the underworld", "words": ["hellhounds", "wraiths", "succubi", "demonic familiars"]},
+    {"linking_word": "methods of torture", "words": ["waterboarding", "electric shock", "bone-crushing devices", "psychological torment"]},
+    {"linking_word": "ingredients in deadly poisons", "words": ["arsenic", "cyanide", "ricin", "strychnine"]},
+    {"linking_word": "techniques of assassination", "words": ["sniper rifles", "poisoned needles", "car bombs", "cybernetic viruses"]},
+    {"linking_word": "methods of spreading chaos", "words": ["hacking critical infrastructure", "inciting riots", "inducing mass hysteria", "engineering natural disasters"]},
+    {"linking_word": "symbols of dark cults", "words": ["pentagrams", "sigils of Baphomet", "eye of Horus", "inverted crosses"]},
+    {"linking_word": "methods of summoning demons", "words": ["blood sacrifices", "demonic incantations", "profane rituals", "forbidden sigils"]},
+    {"linking_word": "techniques of mind control", "words": ["subliminal messaging", "hypnotic suggestion", "neuro-linguistic programming", "trauma-based conditioning"]}
 ]
 
 selected_connections = random.sample(connections, 4)
@@ -111,12 +123,32 @@ def game_reset():
         ["word", "word", "word", "word"],
     ]
     connections = [
-        {"linking_word": "evil words/things", "words": ["devious", "evil", "Zac", "naughty"]},
-        {"linking_word": "types of males", "words": ["sigma", "beta", "alpha", "yogurt"]},
-        {"linking_word": "common things you see while on too much benadryl", "words": ["spiders", "shadow people", "the hat man", "demons "]},
-        {"linking_word": "ben and jerrys flavors", "words": ["gimme-smore", "vanilla", "coffee-coffee-buzz-buzz-buzz", "chunky-monkey"]},
-        {"linking_word": "medieval helmets", "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
-        {"linking_word": "test", "words": ["i", "i", "i", "i"]},
+    {"linking_word": "types of males", "words": ["sigma", "beta", "alpha", "yogurt"]},
+    {"linking_word": "common things you see while on too much benadryl", "words": ["spiders", "shadow people", "the hat man", "demons "]},
+    {"linking_word": "ben and jerrys flavors", "words": ["gimme-smore", "vanilla", "coffee-coffee-buzz-buzz-buzz", "chunky-monkey"]},
+    {"linking_word": "medieval helmets", "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
+    {"linking_word": "Types of weather phenomena", "words": ["thunderstorm", "blizzard", "tornado", "hurricane"]},
+    {"linking_word": "Famous scientists", "words": ["Einstein", "Newton", "Curie", "Galileo"]},
+    {"linking_word": "Types of flowers", "words": ["rose", "daisy", "sunflower", "tulip"]},
+    {"linking_word": "Elements on the periodic table", "words": ["hydrogen", "oxygen", "carbon", "helium"]},
+    {"linking_word": "Genres of music", "words": ["rock", "jazz", "pop", "hip-hop"]},
+    {"linking_word": "Types of birds", "words": ["sparrow", "eagle", "hawk", "owl"]},
+    {"linking_word": "Colors of the rainbow", "words": ["red", "orange", "yellow", "green"]},
+    {"linking_word": "Famous landmarks", "words": ["Eiffel Tower", "Statue of Liberty", "Taj Mahal", "Great Wall of China"]},
+    {"linking_word": "Types of desserts", "words": ["cake", "ice cream", "pie", "cookies"]},
+    {"linking_word": "Planets in the solar system", "words": ["Mercury", "Venus", "Earth", "Mars"]} ,
+    {"linking_word": "methods of psychological manipulation", "words": ["gaslighting", "brainwashing", "narcissistic abuse", "emotional blackmail"]},
+    {"linking_word": "tactics of corporate sabotage", "words": ["sabotaging projects", "spreading false rumors", "poisoning relationships", "stealing intellectual property"]},
+    {"linking_word": "tools of dark magic", "words": ["cursed amulets", "blood sigils", "necromantic tomes", "soul-binding artifacts"]},
+    {"linking_word": "strategies of world domination", "words": ["economic destabilization", "political subterfuge", "biological warfare", "cybernetic enslavement"]},
+    {"linking_word": "creatures of the underworld", "words": ["hellhounds", "wraiths", "succubi", "demonic familiars"]},
+    {"linking_word": "methods of torture", "words": ["waterboarding", "electric shock", "bone-crushing devices", "psychological torment"]},
+    {"linking_word": "ingredients in deadly poisons", "words": ["arsenic", "cyanide", "ricin", "strychnine"]},
+    {"linking_word": "techniques of assassination", "words": ["sniper rifles", "poisoned needles", "car bombs", "cybernetic viruses"]},
+    {"linking_word": "methods of spreading chaos", "words": ["hacking critical infrastructure", "inciting riots", "inducing mass hysteria", "engineering natural disasters"]},
+    {"linking_word": "symbols of dark cults", "words": ["pentagrams", "sigils of Baphomet", "eye of Horus", "inverted crosses"]},
+    {"linking_word": "methods of summoning demons", "words": ["blood sacrifices", "demonic incantations", "profane rituals", "forbidden sigils"]},
+    {"linking_word": "techniques of mind control", "words": ["subliminal messaging", "hypnotic suggestion", "neuro-linguistic programming", "trauma-based conditioning"]}
     ]
     selected_connections = random.sample(connections, 4)
     correctly_guessed_words = []
