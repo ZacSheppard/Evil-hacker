@@ -1,7 +1,7 @@
 import random
+import sys
 
-
-lives = 3
+lives = 4
 correct_guesses = 0
 grid = [                  # creates 4x4 grid.
     ["word", "word", "word", "word"],
@@ -10,26 +10,21 @@ grid = [                  # creates 4x4 grid.
     ["word", "word", "word", "word"],
 ]
 
-connections = [  # makes library's of words called connections, each connection has 4 words and a linking word/phrase
-
-    {"linking_word": "evil words/things",  # the phrase that links all the 4 words
-     "words": ["devious", "evil", "Zac", "naughty"]},  # the words included in the list
-
-    {"linking_word": "types of males",
-     "words": ["sigma", "beta", "alpha", "yogurt"]},
-
-    {"linking_word": "common things you see while on too much benadryl",
-     "words": ["spiders", "shadow people", "the hat man", "demons "]},
-
-    {"linking_word": "ben and jerrys flavors ",
-     "words": ["gimme-smore", "vanilla", "coffee-coffee-buzz-buzz-buzz", "chunky-monkey"]},
-
-    {"linking_word": "medieval helmets",
-     "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
-
-    {"linking_word": "test",
-     "words": ["i", "i", "i", "i"]},
-
+connections = [
+    {"linking_word": "types of males", "words": ["sigma", "beta", "alpha", "yogurt"]},
+    {"linking_word": "common things you see while on too much benadryl", "words": ["spiders", "shadow people", "the hat man", "demons "]},
+    {"linking_word": "ben and jerrys flavors", "words": ["gimme-smore", "vanilla", "coffee-coffee-buzz-buzz-buzz", "chunky-monkey"]},
+    {"linking_word": "medieval helmets", "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
+    {"linking_word": "Types of weather phenomena", "words": ["thunderstorm", "blizzard", "tornado", "hurricane"]},
+    {"linking_word": "Famous scientists", "words": ["Einstein", "Newton", "Curie", "Galileo"]},
+    {"linking_word": "Types of flowers", "words": ["rose", "daisy", "sunflower", "tulip"]},
+    {"linking_word": "Elements on the periodic table", "words": ["hydrogen", "oxygen", "carbon", "helium"]},
+    {"linking_word": "Genres of music", "words": ["rock", "jazz", "pop", "hip-hop"]},
+    {"linking_word": "Types of birds", "words": ["sparrow", "eagle", "hawk", "owl"]},
+    {"linking_word": "Colors of the rainbow", "words": ["red", "orange", "yellow", "green"]},
+    {"linking_word": "Famous landmarks", "words": ["Eiffel Tower", "Statue of Liberty", "Taj Mahal", "Great Wall of China"]},
+    {"linking_word": "Types of desserts", "words": ["cake", "ice cream", "pie", "cookies"]},
+    {"linking_word": "Planets in the solar system", "words": ["Mercury", "Venus", "Earth", "Mars"]} ,
 ]
 
 selected_connections = random.sample(connections, 4)
@@ -57,6 +52,7 @@ def fill_grid():
             if shuffled_words:  #checks if there are still words in the shuffled words list 
                 grid[l][w] = shuffled_words.pop(0)  #adds word into spots inside of the grid ensuring each word is only used once
                 all_words.append(grid[l][w]) #adds words that are being added to the gird to the all_words variable
+    print("")
     print_grid(grid) #prints the grid
     return grid
 
@@ -74,6 +70,10 @@ def player_guess():
     global guesses  #makes the variable global
     guesses = []
     guess_number = 1
+    print("type in your words here")
+    print("type one word the  press enter and then it will let you type 3 more")
+    print("make sure your guess is the exact same as the word on the grid")
+    print("")
     while guess_number <= 4:  # Loop until 4 guesses are made
         guess = input("Guess #{}: ".format(guess_number))  # Ask the player for their guess
         if guess in all_words:   #checks if guess is in all words list
@@ -102,7 +102,7 @@ def check_if_guess_correct():
     
 def game_reset():
     global lives, correct_guesses, grid, selected_connections, correctly_guessed_words, all_words
-    lives = 3
+    lives = 4
     correct_guesses = 0
     grid = [
         ["word", "word", "word", "word"],
@@ -123,29 +123,34 @@ def game_reset():
     all_words = []
 
 def main():
-    while lives > 0:           #if lives goes below zero it prints you lose
-        while correct_guesses < 4:   #if you get more than 4 correct guesses you win
-            fill_grid()
-            player_guess()
-            check_if_guess_correct()
-            if lives < 0:
-        print("you win!")
-        reset = input("would you like to play again? ('yes' or 'no')")
+    print("welcome to evil connections")
+    print("this is an evil version of the ny times game connections")
+    print("there are 4 categorys and 4 words that fit into each category,")
+    print("once you find a common connection, write those 4 words in the guess spot")
+    while True:
+        while lives > 0:           #if lives goes below zero it prints you lose
+            if correct_guesses < 4:   #if you get more than 4 correct guesses you win
+                fill_grid()
+                player_guess()
+                check_if_guess_correct()
+            if correct_guesses == 4:
+                print("you win")
+                reset = input("would you like to play again ('yes'/'no')")
+                if reset == ("yes"):
+                    game_reset()
+                    break
+                else:
+                    return
+                
+        print("you lose :(")
+        reset = input("would you like to play again ('yes'/'no')")
         if reset == ("yes"):
             game_reset()
-            main()
+            continue
         else:
-            print("game over")
-    reset = input("would you like to play again? ('yes' or 'no')")
-    if reset == ("yes"):
-        game_reset()
-        main()
-    else:
-        print("game over")        
+            break
             
-
-    print("you lose :(")
-
+    
 main()
 
     
