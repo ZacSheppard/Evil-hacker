@@ -1,7 +1,8 @@
 import random
 
-lives = 3
 
+lives = 3
+correct_guesses = 0
 grid = [                  # creates 4x4 grid.
     ["word", "word", "word", "word"],
     ["word", "word", "word", "word"],
@@ -14,8 +15,8 @@ connections = [  # makes library's of words called connections, each connection 
     {"linking_word": "evil words/things",  # the phrase that links all the 4 words
      "words": ["devious", "evil", "Zac", "naughty"]},  # the words included in the list
 
-    {"linking_word": "places you can find spiders",
-     "words": ["haunted-house", "web", "backyard", "haloween"]},
+    {"linking_word": "types of males",
+     "words": ["sigma", "beta", "alpha", "yogurt"]},
 
     {"linking_word": "common things you see while on too much benadryl",
      "words": ["spiders", "shadow people", "the hat man", "demons "]},
@@ -26,11 +27,16 @@ connections = [  # makes library's of words called connections, each connection 
     {"linking_word": "medieval helmets",
      "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
 
+    {"linking_word": "test",
+     "words": ["i", "i", "i", "i"]},
+
 ]
 
 selected_connections = random.sample(connections, 4)
 
 connection1, connection2, connection3, connection4 = selected_connections
+
+correctly_guessed_words = []
 
 all_words = []
 
@@ -50,50 +56,101 @@ def fill_grid():
         for w in range(4): #same thing but this time its width
             if shuffled_words:  #checks if there are still words in the shuffled words list 
                 grid[l][w] = shuffled_words.pop(0)  #adds word into spots inside of the grid ensuring each word is only used once
-                all_words.append(grid[l][w])
-    print_grid(grid)
+                all_words.append(grid[l][w]) #adds words that are being added to the gird to the all_words variable
+    print_grid(grid) #prints the grid
     return grid
 
 def print_grid(grid):
-    for row in grid:
-        print(" | ".join(row))  # Add separator between words
-        print("-" * (len(row) * 10 + 3))  # Add horizontal line between rows
+    for l in range(len(grid)):
+        for w in range(len(grid[l])):
+            word = grid[l][w]
+            if word in correctly_guessed_words:
+                word = "\033[93m" + word + "\033[0m"  # Change the color to gold
+            print(word, end=" | ")
+        print()  # Move to the next line
+        print("-" * (len(grid[0]) * 10 + 3))  # Add horizontal line between rows
 
-fill_grid()
-
-print(all_words)
-print(connection1)
-#please can you type in your four words
 def player_guess():
-    global guesses
+    global guesses  #makes the variable global
     guesses = []
     guess_number = 1
     while guess_number <= 4:  # Loop until 4 guesses are made
         guess = input("Guess #{}: ".format(guess_number))  # Ask the player for their guess
-        if guess in all_words:
-            guesses.append(guess)
+        if guess in all_words:   #checks if guess is in all words list
+            guesses.append(guess)  #adds the guess to list of guesses
             guess_number += 1  # Increment guess number only if the guess is correct
         else:
-            print("Incorrect guess, Try again.")
+            print("invalid guess, Try again.")
     print (guesses)
     return guesses
-player_guess()
-
 
 def check_if_guess_correct():
     global lives
-    for connection in selected_connections:
-        if set(guesses) == set(connection["words"]):
-            print(f"Correct! the connection was:  {connection['linking_word']}")
+    global grid               #makes all these variables global
+    global correct_guesses
+    for connection in selected_connections:         #loopsn through all the selected connections
+        if set(guesses) == set(connection["words"]):  #checks if the guess is in the words in the selected connections
+            print(f"Correct! The connection was: {connection['linking_word']}")   #if its in correct its prints a statement saying what the category was
+            for word in connection["words"]:
+                correctly_guessed_words.append(word)   # Append each word from the connection to correctly_guessed_words
+            correct_guesses += 1  
             return
+
     print("Incorrect")
     lives -= 1
+    print(f"remaining live = {lives} ")
+    
+def game_reset():
+    global lives, correct_guesses, grid, selected_connections, correctly_guessed_words, all_words
+    lives = 3
+    correct_guesses = 0
+    grid = [
+        ["word", "word", "word", "word"],
+        ["word", "word", "word", "word"],
+        ["word", "word", "word", "word"],
+        ["word", "word", "word", "word"],
+    ]
+    connections = [
+        {"linking_word": "evil words/things", "words": ["devious", "evil", "Zac", "naughty"]},
+        {"linking_word": "types of males", "words": ["sigma", "beta", "alpha", "yogurt"]},
+        {"linking_word": "common things you see while on too much benadryl", "words": ["spiders", "shadow people", "the hat man", "demons "]},
+        {"linking_word": "ben and jerrys flavors", "words": ["gimme-smore", "vanilla", "coffee-coffee-buzz-buzz-buzz", "chunky-monkey"]},
+        {"linking_word": "medieval helmets", "words": ["frogmouth", "kettle-hat", "hounskull", "sallet"]},
+        {"linking_word": "test", "words": ["i", "i", "i", "i"]},
+    ]
+    selected_connections = random.sample(connections, 4)
+    correctly_guessed_words = []
+    all_words = []
+
+def main():
+    while lives > 0:           #if lives goes below zero it prints you lose
+        while correct_guesses < 4:   #if you get more than 4 correct guesses you win
+            fill_grid()
+            player_guess()
+            check_if_guess_correct()
+            if lives < 0:
+        print("you win!")
+        reset = input("would you like to play again? ('yes' or 'no')")
+        if reset == ("yes"):
+            game_reset()
+            main()
+        else:
+            print("game over")
+    reset = input("would you like to play again? ('yes' or 'no')")
+    if reset == ("yes"):
+        game_reset()
+        main()
+    else:
+        print("game over")        
+            
+
+    print("you lose :(")
+
+main()
 
     
-check_if_guess_correct()
-
-
-
+    
+    
 
 
     
